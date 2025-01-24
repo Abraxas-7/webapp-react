@@ -1,7 +1,11 @@
-import React from "react";
+import style from "./MainComponent.module.css";
 
-function MainComponent() {
-  return <div>MainComponent</div>;
+export default function MainComponent() {
+  return (
+    <div
+      className={`${style.myContainer} d-flex justify-content-center align-items-center`}
+    >
+      <h1>Main</h1>
+    </div>
+  );
 }
-
-export default MainComponent;

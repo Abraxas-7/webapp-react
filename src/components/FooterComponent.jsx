@@ -1,7 +1,11 @@
-import React from "react";
+import style from "./FooterComponent.module.css";
 
-function FooterComponent() {
-  return <div>FooterComponent</div>;
+export default function FooterComponent() {
+  return (
+    <div
+      className={`${style["gradient-custom"]} text-white d-flex justify-content-center align-items-center`}
+    >
+      <div>All rights reserved to Abraxas</div>
+    </div>
+  );
 }
-
-export default FooterComponent;
