@@ -1,0 +1,14 @@
+.imageContainer {
+  width: 100%;
+  height: px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardImg {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+}

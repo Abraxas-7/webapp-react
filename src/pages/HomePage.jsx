@@ -1,9 +1,9 @@
 import React from "react";
 
-import MainComponent from "../components/MainComponent";
+import MovieComponent from "../components/MovieComponent";
 
 function HomePage() {
-  return <MainComponent />;
+  return <MovieComponent />;
 }
 
 export default HomePage;
