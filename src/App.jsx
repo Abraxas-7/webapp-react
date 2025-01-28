@@ -6,6 +6,7 @@ import { GlobalProvider } from "./context/GlobalContext";
 
 import DefaultLayout from "./pages/DefaultLayout";
 import HomePage from "./pages/HomePage";
+import MovieDetailPage from "./pages/MovieDetailPage";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Route Component={DefaultLayout}>
             <Route path="/">
               <Route index Component={HomePage} />
-              <Route path=":id" />
+              <Route path="/movies/:id" Component={MovieDetailPage} />
             </Route>
           </Route>
         </Routes>

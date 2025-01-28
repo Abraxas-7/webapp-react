@@ -5,11 +5,11 @@ const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
-  const abiUrl = import.meta.env.VITE_MOVIE_URL;
+  const apiUrl = import.meta.env.VITE_MOVIE_URL;
 
   const fetchMovies = () => {
     axios
-      .get(abiUrl)
+      .get(apiUrl)
       .then((res) => {
         setMovies(res.data);
         console.log(res.data);
@@ -24,7 +24,7 @@ const GlobalProvider = ({ children }) => {
   }, []);
 
   return (
-    <GlobalContext.Provider value={{ movies }}>
+    <GlobalContext.Provider value={{ movies, apiUrl }}>
       {children}
     </GlobalContext.Provider>
   );
