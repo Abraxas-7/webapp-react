@@ -5,7 +5,7 @@ export default function Card({ movie }) {
   const imagePath = `/movies_cover/${formattedTitle}.jpg`;
 
   return (
-    <div className="card d-flex flex-column h-100">
+    <div className="card d-flex flex-column h-100 shadow">
       <div>
         <img
           src={imagePath}

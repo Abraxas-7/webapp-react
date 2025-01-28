@@ -1,7 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import ReviewList from "../components/ReviewList";
 import Rating from "../components/Rating";
+
+import { useGlobalContext } from "../context/GlobalContext";
+import style from "../components/MovieComponent.module.css";
 
 import axios from "axios";
 
@@ -9,29 +13,46 @@ export default function MovieDetailPage() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const [isError, setIsError] = useState(false);
+
+  const { toggleLoader, isLoading } = useGlobalContext();
 
   const apiUrl = import.meta.env.VITE_MOVIE_URL;
 
-  const fetchMovie = () => {
+  useEffect(() => {
+    toggleLoader(true);
+
     axios
       .get(`${apiUrl}/${id}`)
       .then((res) => {
-        setMovie(res.data);
-        setReviews(res.data.reviews);
-        console.log(res.data);
-        console.log(res.data.reviews);
+        if (res.data) {
+          setMovie(res.data);
+          setReviews(res.data.reviews);
+        } else {
+          setIsError(true);
+        }
       })
       .catch((err) => {
         console.error("Error during API call:", err);
+        setIsError(true);
+      })
+      .finally(() => {
+        toggleLoader(false);
       });
-  };
-
-  useEffect(() => {
-    fetchMovie();
   }, [id]);
 
+  if (isError) {
+    return (
+      <div
+        className={`${style.myContainer} container d-flex justify-content-center align-items-center p-5`}
+      >
+        <div>Movie not found</div>
+      </div>
+    );
+  }
+
   if (!movie) {
-    return <p>Movie not found</p>;
+    return null;
   }
 
   const formattedTitle = movie.title.toLowerCase().replace(/ /g, "_");
