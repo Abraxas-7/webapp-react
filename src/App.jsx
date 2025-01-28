@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route Component={DefaultLayout}>
-            <Route path="/">
+            <Route path="/movies">
               <Route index Component={HomePage} />
               <Route path="/movies/:id" Component={MovieDetailPage} />
             </Route>
